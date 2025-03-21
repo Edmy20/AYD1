@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 2</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background: linear-gradient(
+          to right,
+          #fbd3e9,
+          #bbdffb
+        ); /* Degradado pastel */
+      }
+
+      .container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px; /* Bordes más redondeados */
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+        display: inline-block;
+        text-align: left;
+      }
+
+      button {
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background-color: #ffb3c1; /* Color pastel */
+        color: #ffffff;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #f58ea6; /* Color más oscuro al pasar el cursor */
+        transform: scale(1.05); /* Pequeño aumento al pasar el cursor */
+      }
+
+      #info {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333333; /* Texto oscuro y contrastante */
+        display: none; /* Oculto por defecto */
+      }
+      h1 {
+        color: #ee6f8d; /* Texto oscuro y contrastante */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bienvenid@</h1>
+    <div class="container">
+      <button onclick="toggleInfo()">Mostrar Información</button>
+      <div id="info"></div>
+    </div>
+
+    <script>
+      let visible = false;
+
+      function toggleInfo() {
+        const infoDiv = document.getElementById("info");
+
+        if (!visible) {
+          fetch("/info")
+            .then((response) => response.json())
+            .then((data) => {
+              infoDiv.innerHTML = `
+                            <p><strong>Nombre:</strong> ${data.nombre}</p>
+                            <p><strong>Carnet:</strong> ${data.carnet}</p>
+                            <p><strong>Curso:</strong> ${data.curso}</p>
+                        `;
+              infoDiv.style.display = "block"; // Mostrar los datos
+            })
+            .catch((error) => console.error("Error:", error));
+        } else {
+          infoDiv.style.display = "none"; // Ocultar los datos
+        }
+
+        visible = !visible; // Alternar estado
+      }
+    </script>
+  </body>
+</html>

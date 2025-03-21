@@ -1,0 +1,14 @@
+{
+  "name": "recursos",
+  "version": "1.0.0",
+  "description": "\"Aplicación Web en Docker\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "author": "Edmy20",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
